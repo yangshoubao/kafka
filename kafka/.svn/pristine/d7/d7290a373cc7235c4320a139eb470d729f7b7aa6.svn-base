@@ -1,0 +1,130 @@
+package com.kentrasoft.kafka.util;
+
+import com.alibaba.fastjson.JSONObject;
+
+public class ProfileUtil {
+
+    // 协议前缀
+    private static String agreement;
+    // imei
+    // private String sImei;
+    // 数据长度
+    private static String slong;
+    // 命令类型
+    private static String typeIdent;
+    // 日期
+    private static String dateIdent;
+    // 时间
+    private static String timeIdent;
+    // A,gps 定位有效
+    private static String effective;
+    // 纬度
+    private static String latitude;
+    // N,纬度表示
+    private static String latitudeIdent;
+    // 经度
+    private static String longitude;
+    // E,经度表示
+    private static String longitudeIdent;
+    // 速度
+    private static String speed;
+    // 方向à没有方向用-1表示
+    // private String direction;
+    // 海拔
+    private static String altitude;
+    // 卫星个数
+    private static int satellite;
+    // 预留à0
+    private static String reserve1;
+    // 电量
+    private static String quantity;
+    // 预留à0
+    private static String reserve2;
+    // MAC
+    private static String macIdent;
+    // 计步
+    private static String paceIdent;
+    // 时间戳
+    private static String stamp;
+    // 固件编译日期
+    private static String compile;
+    // 固件版本
+    private static String servion;
+    // GPS室内室外
+    private static String inOut;
+    //agps
+    private static String agpsIdent;
+    //包数
+    private static String numberIdent;
+
+    public static JSONObject profile(String input){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            String jsonStr = input.toString();
+            String[] jsonList = jsonStr.split(",");
+            String paramOne = jsonList[0];
+            String paramTwo =  jsonList[1];
+            if(paramOne.equals("ACK")&&paramTwo.equals("agps")){
+                //ACK,agps,0
+                typeIdent = paramOne;
+                agpsIdent = paramTwo;
+                numberIdent = jsonList[2];
+                return null;
+            }
+            String[] one = paramOne.split("\\*");
+            // 一号位
+            agreement = one[0];
+            slong = one[1];
+            typeIdent = one[2];
+            if (typeIdent.equals("AL_ACK")) {
+                return null;
+            }
+            dateIdent = paramTwo;
+            timeIdent = jsonList[2];
+            effective = jsonList[3];
+            latitude = jsonList[4];
+            latitudeIdent = jsonList[5];
+            longitude = jsonList[6];
+            longitudeIdent = jsonList[7];
+            speed = jsonList[8];
+            altitude = jsonList[9];
+            satellite = Integer.valueOf(jsonList[10]);
+            reserve1 = jsonList[11];
+            quantity = jsonList[12];
+            reserve2 = jsonList[13];
+            macIdent = jsonList[14];
+            paceIdent = jsonList[15];
+            stamp = jsonList[16];
+            compile = jsonList[17];
+            servion = jsonList[18];
+            inOut = jsonList[19];
+        } catch (Exception e) {
+            agreement = input.toString();
+        }
+        jsonObject.put("agreement", agreement);
+        jsonObject.put("slong", slong);
+        jsonObject.put("typeIdent", typeIdent);
+        jsonObject.put("dateIdent", dateIdent);
+        jsonObject.put("timeIdent", timeIdent);
+        jsonObject.put("effective", effective);
+        jsonObject.put("latitude", latitude);
+        jsonObject.put("latitudeIdent", latitudeIdent);
+        jsonObject.put("longitude", longitude);
+        jsonObject.put("longitudeIdent", longitudeIdent);
+        jsonObject.put("speed", speed);
+        jsonObject.put("altitude", altitude);
+        jsonObject.put("satellite", satellite);
+        jsonObject.put("reserve1", reserve1);
+        jsonObject.put("quantity", quantity);
+        jsonObject.put("reserve2", reserve2);
+        jsonObject.put("macIdent", macIdent);
+        jsonObject.put("paceIdent", paceIdent);
+        jsonObject.put("stamp", stamp);
+        jsonObject.put("compile", compile);
+        jsonObject.put("servion", servion);
+        jsonObject.put("inOut", inOut);
+        jsonObject.put("agpsIdent", agpsIdent);
+        jsonObject.put("numberIdent", numberIdent);
+        return jsonObject;
+    }
+}

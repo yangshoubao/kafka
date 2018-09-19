@@ -1,0 +1,42 @@
+#kafka相关配置
+#ceshi-waiwang
+spring.kafka.bootstrap-servers=182.150.59.121:2180
+
+#ceshi-waiwang
+#spring.kafka.bootstrap-servers=172.18.105.12:2180
+
+#zhengshi-neiwang
+#spring.kafka.bootstrap-servers=172.16.100.57:8084
+
+spring.kafka.topic.nb-upload=upload
+spring.kafka.topic.nb-callback=command
+spring.kafka.topic.nb-handle=handle
+spring.kafka.topic.nb-subscribe=subscribe
+spring.kafka.topic.nb-agps=agps
+
+#key-value序列化反序列化
+spring.kafka.consumer.key-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+spring.kafka.consumer.value-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
+spring.kafka.producer.value-serializer=org.apache.kafka.common.serialization.StringSerializer
+spring.kafka.producer.batch-size=65536
+spring.kafka.producer.buffer-memory=524288
+
+# Redis数据库索引（默认为0）
+#spring.redis.database=1
+# Redis服务器地址
+#spring.redis.host=182.150.59.121
+# Redis服务器连接端口
+#spring.redis.port=7091
+# Redis服务器连接密码（默认为空）
+#spring.redis.password=
+# 连接池最大连接数（使用负值表示没有限制）
+#spring.redis.jedis.pool.max-active=8
+# 连接池最大阻塞等待时间（使用负值表示没有限制）
+#spring.redis.jedis.pool.max-wait=-1ms
+# 连接池中的最大空闲连接
+#spring.redis.jedis.pool.max-idle=8
+# 连接池中的最小空闲连接
+#spring.redis.jedis.pool.min-idle=0
+# 连接超时时间（毫秒）
+#spring.redis.timeout=
